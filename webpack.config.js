@@ -1,10 +1,11 @@
-const { mode } = require("webpack-nano/argv");
+// const { mode } = require("webpack-nano/argv");
+const mode = process.env.mode;
 const { merge } = require("webpack-merge");
 const parts = require("./webpack.parts");
 
-const commonConfig = merge([{ entry: ["./src"] }, parts.page({ title: "Demo" })]);
+const commonConfig = merge([{ entry: ["./src"] }, parts.loadCSS(), parts.page({ title: "Demo" })]);
 const productionConfig = merge([]);
-const developmentConfig = merge([{ entry: "webpack-plugin-serve/client" }, parts.devServer()]);
+const developmentConfig = merge([parts.devServer()]);
 
 const getConfig = mode => {
   switch (mode) {
