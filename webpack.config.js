@@ -1,4 +1,3 @@
-// const { mode } = require("webpack-nano/argv");
 const mode = process.env.mode;
 const { merge } = require("webpack-merge");
 const parts = require("./webpack.parts");

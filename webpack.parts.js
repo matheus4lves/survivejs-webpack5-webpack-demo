@@ -1,4 +1,3 @@
-// const { WebpackPluginServe } = require("webpack-plugin-serve");
 const { MiniHtmlWebpackPlugin } = require("mini-html-webpack-plugin");
 const path = require("path");
 const { mergeWithRules } = require("webpack-merge");
@@ -46,18 +45,6 @@ const mergedCssConfig = mergeWithRules({
     },
   },
 })(cssConfig, postcssConfig);
-
-/* exports.devServer = () => ({
-  watch: true,
-  plugins: [
-    new WebpackPluginServe({
-      port: parseInt(process.env.PORT, 10) || 8080,
-      static: "./dist",
-      liveReload: true,
-      waitForBuild: true,
-    }),
-  ],
-}); */
 
 exports.devServer = () => ({
   devServer: {
