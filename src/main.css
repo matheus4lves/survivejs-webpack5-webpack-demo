@@ -1,3 +1,1 @@
-body {
-  background-color: cornsilk;
-}
+@import "./styles/base/_global.css";
