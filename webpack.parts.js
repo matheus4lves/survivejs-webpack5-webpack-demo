@@ -2,6 +2,7 @@ const { MiniHtmlWebpackPlugin } = require("mini-html-webpack-plugin");
 const path = require("path");
 const { mergeWithRules } = require("webpack-merge");
 const postcssPlugins = [require("postcss-import"), require("postcss-mixins"), require("postcss-simple-vars"), require("postcss-nested"), require("autoprefixer")];
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const cssConfig = {
   module: {
@@ -64,3 +65,20 @@ exports.page = ({ title }) => ({
 exports.loadCSS = () => cssConfig;
 
 exports.loadPostcss = () => mergedCssConfig;
+
+exports.extractCss = ({ options = {}, loaders = [] } = {}) => ({
+  module: {
+    rules: [
+      {
+        test: /\.css$/i,
+        use: [{ loader: MiniCssExtractPlugin.loader, options }, "css-loader"].concat(loaders),
+        sideEffects: true,
+      },
+    ],
+  },
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: "[name].css",
+    }),
+  ],
+});

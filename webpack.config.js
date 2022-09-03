@@ -3,7 +3,7 @@ const { merge } = require("webpack-merge");
 const parts = require("./webpack.parts");
 
 const commonConfig = merge([{ entry: ["./src"] }, parts.loadPostcss(), parts.page({ title: "Demo" })]);
-const productionConfig = merge([]);
+const productionConfig = merge([parts.extractCss()]);
 const developmentConfig = merge([parts.devServer()]);
 
 const getConfig = mode => {
