@@ -2,6 +2,10 @@ const { MiniHtmlWebpackPlugin } = require("mini-html-webpack-plugin");
 const path = require("path");
 const postcssPlugins = [require("postcss-import"), require("postcss-mixins"), require("postcss-simple-vars"), require("postcss-nested"), require("tailwindcss")(), require("autoprefixer")];
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const glob = require("glob");
+const PurgeCssPlugin = require("purgecss-webpack-plugin");
+
+const ALL_FILES = glob.sync(path.join(__dirname, "src/*.js"));
 
 exports.devServer = () => ({
   devServer: {
@@ -53,4 +57,18 @@ exports.tailwind = () => ({
       plugins: postcssPlugins,
     },
   },
+});
+
+exports.eliminateUnusedCss = () => ({
+  plugins: [
+    new PurgeCssPlugin({
+      paths: ALL_FILES, // Consider extracting as a parameter
+      extractors: [
+        {
+          extractor: content => content.match(/[^<>"'`\s]*[^<>"'`\s:]/g) || [],
+          extensions: ["html"],
+        },
+      ],
+    }),
+  ],
 });

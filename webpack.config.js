@@ -4,7 +4,7 @@ const parts = require("./webpack.parts");
 const cssLoaders = [parts.tailwind()];
 
 const commonConfig = merge([{ entry: ["./src"] }, parts.extractCss({ loaders: cssLoaders }), parts.page({ title: "Demo" })]);
-const productionConfig = merge([]);
+const productionConfig = merge([parts.eliminateUnusedCss()]);
 const developmentConfig = merge([parts.devServer()]);
 
 const getConfig = mode => {
