@@ -1,9 +1,10 @@
 const mode = process.env.mode;
 const { merge } = require("webpack-merge");
 const parts = require("./webpack.parts");
+const cssLoaders = [parts.tailwind()];
 
-const commonConfig = merge([{ entry: ["./src"] }, parts.loadPostcss(), parts.page({ title: "Demo" })]);
-const productionConfig = merge([parts.extractCss()]);
+const commonConfig = merge([{ entry: ["./src"] }, parts.extractCss({ loaders: cssLoaders }), parts.page({ title: "Demo" })]);
+const productionConfig = merge([]);
 const developmentConfig = merge([parts.devServer()]);
 
 const getConfig = mode => {

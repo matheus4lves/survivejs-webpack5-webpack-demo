@@ -1,51 +1,7 @@
 const { MiniHtmlWebpackPlugin } = require("mini-html-webpack-plugin");
 const path = require("path");
-const { mergeWithRules } = require("webpack-merge");
-const postcssPlugins = [require("postcss-import"), require("postcss-mixins"), require("postcss-simple-vars"), require("postcss-nested"), require("autoprefixer")];
+const postcssPlugins = [require("postcss-import"), require("postcss-mixins"), require("postcss-simple-vars"), require("postcss-nested"), require("tailwindcss")(), require("autoprefixer")];
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-
-const cssConfig = {
-  module: {
-    rules: [
-      {
-        test: /\.css$/i,
-        use: ["style-loader", "css-loader"],
-      },
-    ],
-  },
-};
-
-const postcssConfig = {
-  module: {
-    rules: [
-      {
-        test: /\.css$/i,
-        use: [
-          {
-            loader: "postcss-loader",
-            options: {
-              postcssOptions: {
-                plugins: postcssPlugins,
-              },
-            },
-          },
-        ],
-      },
-    ],
-  },
-};
-
-const mergedCssConfig = mergeWithRules({
-  module: {
-    rules: {
-      test: "match",
-      use: {
-        loader: "match",
-        options: "replace",
-      },
-    },
-  },
-})(cssConfig, postcssConfig);
 
 exports.devServer = () => ({
   devServer: {
@@ -62,15 +18,22 @@ exports.page = ({ title }) => ({
   plugins: [new MiniHtmlWebpackPlugin({ context: { title } })],
 });
 
-exports.loadCSS = () => cssConfig;
-
-exports.loadPostcss = () => mergedCssConfig;
+exports.loadCSS = () => ({
+  module: {
+    rules: [
+      {
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader"],
+      },
+    ],
+  },
+});
 
 exports.extractCss = ({ options = {}, loaders = [] } = {}) => ({
   module: {
     rules: [
       {
-        test: /\.css$/i,
+        test: /\.css$/,
         use: [{ loader: MiniCssExtractPlugin.loader, options }, "css-loader"].concat(loaders),
         sideEffects: true,
       },
@@ -81,4 +44,13 @@ exports.extractCss = ({ options = {}, loaders = [] } = {}) => ({
       filename: "[name].css",
     }),
   ],
+});
+
+exports.tailwind = () => ({
+  loader: "postcss-loader",
+  options: {
+    postcssOptions: {
+      plugins: postcssPlugins,
+    },
+  },
 });
