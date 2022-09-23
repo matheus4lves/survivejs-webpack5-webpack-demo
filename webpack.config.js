@@ -3,7 +3,7 @@ const { merge } = require("webpack-merge");
 const parts = require("./webpack.parts");
 const cssLoaders = [parts.tailwind()];
 
-const commonConfig = merge([{ entry: ["./src"] }, parts.extractCss({ loaders: cssLoaders }), parts.page({ title: "Demo" })]);
+const commonConfig = merge([{ entry: ["./src"] }, parts.extractCss({ loaders: cssLoaders }), parts.page({ title: "Demo" }), parts.loadImages({ limit: 8192 })]);
 const productionConfig = merge([parts.eliminateUnusedCss()]);
 const developmentConfig = merge([parts.devServer()]);
 

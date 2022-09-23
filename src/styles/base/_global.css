@@ -4,4 +4,7 @@
 
 body {
   background-color: cornsilk;
+  background-image: url("/src/images/logo.png");
+  background-repeat: no-repeat;
+  background-position: center;
 }
