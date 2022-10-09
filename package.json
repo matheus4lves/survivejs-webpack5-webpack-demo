@@ -13,7 +13,10 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@babel/core": "^7.19.3",
+    "@babel/preset-env": "^7.19.3",
     "autoprefixer": "^10.4.8",
+    "babel-loader": "^8.2.5",
     "css-loader": "^6.7.1",
     "glob": "^8.0.3",
     "mini-css-extract-plugin": "^2.6.1",
