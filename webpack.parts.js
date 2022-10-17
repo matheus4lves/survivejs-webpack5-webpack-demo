@@ -98,3 +98,9 @@ exports.loadJavaScript = () => ({
     ],
   },
 });
+
+/* Warning
+You should configure your server to disallow access to the Source Map file for normal users! */
+exports.generateSourceMaps = ({ type }) => ({
+  devtool: type,
+});
