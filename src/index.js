@@ -1,3 +1,6 @@
+import "react";
+import "react-dom";
+
 // Fonts
 import "@fontsource/lato";
 import "@fontsource/montserrat";
