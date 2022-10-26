@@ -104,3 +104,9 @@ You should configure your server to disallow access to the Source Map file for n
 exports.generateSourceMaps = ({ type }) => ({
   devtool: type,
 });
+
+exports.clean = () => ({
+  output: {
+    clean: true,
+  },
+});
