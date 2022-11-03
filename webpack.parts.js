@@ -4,6 +4,7 @@ const postcssPlugins = [require("postcss-import"), require("postcss-mixins"), re
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const glob = require("glob");
 const PurgeCssPlugin = require("purgecss-webpack-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
 
 const ALL_FILES = glob.sync(path.join(__dirname, "src/*.js"));
 
@@ -109,4 +110,8 @@ exports.clean = () => ({
   output: {
     clean: true,
   },
+});
+
+exports.minifyJavaScript = () => ({
+  optimization: { minimizer: [new TerserPlugin()] },
 });
