@@ -5,6 +5,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const glob = require("glob");
 const PurgeCssPlugin = require("purgecss-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
+const CssMinimizerWebpackPlugin = require("css-minimizer-webpack-plugin");
 
 const ALL_FILES = glob.sync(path.join(__dirname, "src/*.js"));
 
@@ -114,4 +115,10 @@ exports.clean = () => ({
 
 exports.minifyJavaScript = () => ({
   optimization: { minimizer: [new TerserPlugin()] },
+});
+
+exports.minifyCSS = ({ options }) => ({
+  optimization: {
+    minimizer: [new CssMinimizerWebpackPlugin({ minimizerOptions: options })],
+  },
 });
