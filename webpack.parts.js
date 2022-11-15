@@ -6,7 +6,7 @@ const glob = require("glob");
 const PurgeCssPlugin = require("purgecss-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const CssMinimizerWebpackPlugin = require("css-minimizer-webpack-plugin");
-const webpack = require("webpack");
+const Dotenv = require("dotenv-webpack");
 
 const ALL_FILES = glob.sync(path.join(__dirname, "src/*.js"));
 
@@ -124,12 +124,7 @@ exports.minifyCSS = ({ options }) => ({
   },
 });
 
-exports.setFreeVariable = (key, value) => {
-  const env = {};
-  env[key] = JSON.stringify(value);
-  /* env.key = JSON.stringify(value) */
-
-  return {
-    plugins: [new webpack.DefinePlugin(env)],
-  };
-};
+exports.readEnvironmentVariables = () => ({
+  // Prefix was set so you don't have to type "process.env."
+  plugins: [new Dotenv({ prefix: "" })],
+});
