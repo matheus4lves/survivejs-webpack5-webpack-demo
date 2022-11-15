@@ -3,7 +3,7 @@ const { merge } = require("webpack-merge");
 const parts = require("./webpack.parts");
 const cssLoaders = [parts.tailwind()];
 
-const commonConfig = merge([{ entry: ["./src"] }, parts.extractCss({ loaders: cssLoaders }), parts.page({ title: "Demo" }), parts.loadImages({ limit: 8192 }), parts.clean()]);
+const commonConfig = merge([{ entry: ["./src"] }, parts.extractCss({ loaders: cssLoaders }), parts.page({ title: "Demo" }), parts.loadImages({ limit: 8192 }), parts.clean(), parts.setFreeVariable("HELLO", "hello from config")]);
 const productionConfig = merge([parts.minifyCSS({ options: { preset: ["default"] } }), parts.minifyJavaScript(), parts.eliminateUnusedCss(), parts.loadJavaScript(), parts.generateSourceMaps({ type: "source-map" }), { optimization: { splitChunks: { chunks: "all" } } }]);
 const developmentConfig = merge([parts.devServer()]);
 
