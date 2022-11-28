@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "mode=production webpack",
+    "build": "mode=production webpack --json > stats.json",
     "watch": "nodemon --watch \"./webpack.*.*\" --exec \"npm start\"",
     "start": "mode=development webpack serve"
   },
