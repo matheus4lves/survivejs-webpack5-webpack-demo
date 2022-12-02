@@ -1,0 +1,47 @@
+{
+  "chunks": {
+    "byName": {
+      "lazy-component": 839,
+      "main": 179,
+      "runtime": 666
+    },
+    "bySource": {
+      "0 lazy-component": 839,
+      "0 main": 666,
+      "1 main": 413,
+      "2 main": 179
+    },
+    "usedIds": [
+      179,
+      413,
+      666,
+      839
+    ]
+  },
+  "modules": {
+    "byIdentifier": {
+      "./node_modules/babel-loader/lib/index.js!./src/components/lazy.js": 542,
+      "./node_modules/babel-loader/lib/index.js!./src/index.js|8b1693beaefdfa8d70a616dc987e0f74": 772,
+      "./node_modules/mini-css-extract-plugin/dist/loader.js??ruleSet[1].rules[0].use[0]!./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[0].use[2]!./node_modules/@fontsource/lato/index.css": 480,
+      "./node_modules/mini-css-extract-plugin/dist/loader.js??ruleSet[1].rules[0].use[0]!./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[0].use[2]!./node_modules/@fontsource/montserrat/index.css": 45,
+      "./node_modules/react-dom/cjs/react-dom.production.min.js": 448,
+      "./node_modules/react-dom/index.js": 935,
+      "./node_modules/react/cjs/react.production.min.js": 408,
+      "./node_modules/react/index.js": 294,
+      "./node_modules/scheduler/cjs/scheduler.production.min.js": 53,
+      "./node_modules/scheduler/index.js": 840
+    },
+    "usedIds": [
+      45,
+      53,
+      294,
+      408,
+      448,
+      480,
+      542,
+      772,
+      840,
+      935
+    ]
+  }
+}
