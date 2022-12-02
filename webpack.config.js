@@ -4,7 +4,7 @@ const parts = require("./webpack.parts");
 const cssLoaders = [parts.tailwind()];
 
 const commonConfig = merge([{ output: { chunkFilename: "[name].[contenthash].js", filename: "[name].[contenthash].js", assetModuleFilename: "[name].[contenthash].[ext].[query]" } }, { entry: ["./src"] }, parts.extractCss({ loaders: cssLoaders }), parts.page({ title: "Demo" }), parts.loadImages({ limit: 8192 }), parts.clean(), parts.readEnvironmentVariables()]);
-const productionConfig = merge([parts.minifyCSS({ options: { preset: ["default"] } }), parts.minifyJavaScript(), parts.eliminateUnusedCss(), parts.loadJavaScript(), parts.generateSourceMaps({ type: "source-map" }), { optimization: { splitChunks: { chunks: "all" } } }]);
+const productionConfig = merge([parts.minifyCSS({ options: { preset: ["default"] } }), parts.minifyJavaScript(), parts.eliminateUnusedCss(), parts.loadJavaScript(), parts.generateSourceMaps({ type: "source-map" }), { optimization: { splitChunks: { chunks: "all" }, runtimeChunk: { name: "runtime" } } }]);
 const developmentConfig = merge([parts.devServer()]);
 
 const getConfig = mode => {
