@@ -7,6 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build:stats": "mode=production webpack --json > stats.json",
     "build": "mode=production webpack",
+    "build:multi": "wp --config webpack.multi.js",
     "watch": "nodemon --watch \"./webpack.*.*\" --exec \"npm start\"",
     "start": "mode=development webpack serve"
   },
