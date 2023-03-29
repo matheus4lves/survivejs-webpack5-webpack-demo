@@ -9,6 +9,8 @@
     "build": "mode=production webpack",
     "build:multi": "wp --config webpack.multi.js",
     "build:ssr": "wp --config webpack.ssr.js",
+    "build:mf": "wp --config webpack.mf.js --mode production",
+    "start:mf": "wp --config webpack.mf.js --mode development",
     "watch": "nodemon --watch \"./webpack.*.*\" --exec \"npm start\"",
     "start": "mode=development webpack serve"
   },
