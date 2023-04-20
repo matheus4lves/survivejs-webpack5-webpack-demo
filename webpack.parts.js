@@ -8,18 +8,20 @@ const TerserPlugin = require("terser-webpack-plugin");
 const CssMinimizerWebpackPlugin = require("css-minimizer-webpack-plugin");
 const Dotenv = require("dotenv-webpack");
 const { ModuleFederationPlugin } = require("webpack").container;
+const { WebpackPluginServe } = require("webpack-plugin-serve");
 
 const ALL_FILES = glob.sync(path.join(__dirname, "src/*.js"));
 
 exports.devServer = () => ({
-  devServer: {
-    host: "local-ip",
-    liveReload: true,
-    port: parseInt(process.env.PORT, 10) || 8080,
-    static: {
-      directory: path.join(__dirname, "dist"),
-    },
-  },
+  watch: true,
+  plugins: [
+    new WebpackPluginServe({
+      port: parseInt(process.env.PORT, 10) || 8080,
+      static: "./dist", // Expose if output.path changes
+      liveReload: true,
+      waitForBuild: true,
+    }),
+  ],
 });
 
 /* {title = title, url = "", chunks = chunks} = {}
