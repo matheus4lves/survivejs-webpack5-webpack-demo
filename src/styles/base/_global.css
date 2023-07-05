@@ -2,15 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
+/* body {
   background-color: cornsilk;
   background-image: url("/src/images/logo.png");
   background-repeat: no-repeat;
   background-position: center;
-}
+} */
 
 p {
   font-family: "Lato";
   font-weight: 400;
   font-style: normal;
+}
+
+h1 {
+  word-break: break-all;
 }
