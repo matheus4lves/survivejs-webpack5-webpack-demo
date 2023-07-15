@@ -12,7 +12,8 @@
     "start": "wp --mode development",
     "build": "wp --mode production",
     "start:mf": "wp --config webpack.mf.js --mode development",
-    "build:mf": "wp --config webpack.mf.js --mode production"
+    "build:mf": "wp --config webpack.mf.js --mode production",
+    "build:i18n": "wp --config webpack.i18n.js"
   },
   "keywords": [],
   "author": "",
